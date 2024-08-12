@@ -14,7 +14,7 @@ class Visualizer:
         self.img = cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB)
         self.img_size = img_size
     
-    def visualise_yolo(self, annotation_txt_file):
+    def visualise_yolo(self, annotation_txt_file, class_labels):
         logger.info("Visualising YOLO annotation")
 
         # draw bounding boxes
@@ -24,6 +24,9 @@ class Visualizer:
             x_max = int((x_center + width / 2) * self.img_size)
             y_min = int((y_center - height / 2) * self.img_size)
             y_max = int((y_center + height / 2) * self.img_size)
+
+            class_label_txt = class_labels[int(class_label)] if class_labels else class_label
+            class_label = f"{class_label_txt}: {round(x_center, 3)}, {round(y_center, 3)}, {round(width, 3)}, {round(height, 3)}"
             cv2.rectangle(self.img, (x_min, y_min), (x_max, y_max), (0, 255, 0), 2)
             cv2.putText(self.img, class_label, (x_min, y_min - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
