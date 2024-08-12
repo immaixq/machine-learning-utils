@@ -1,0 +1,2 @@
+2024-08-12 13:18:46,118 - root - INFO - Logging setup complete
+2024-08-12 13:18:46,118 - __main__ - INFO - Hello, World!
